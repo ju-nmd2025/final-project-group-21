@@ -1,16 +1,9 @@
+import { character } from "./character";
+
 function setup() {
     createCanvas(400, 400);
 }
 
-let character = {
-    x: 50,
-    y: 50,
-    w: 50,
-    h: 50,
-    draw() {
-        rect(this.x, this.y, this.w, this.h);
-    },
-};
 
 let platform = {
     x: 250,
