@@ -2,7 +2,7 @@ import { character } from "./character";
 import platform from "platform";
 
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(550, 400);
 }
 
 // Obstacle / Spike / Death
