@@ -1,6 +1,6 @@
 export let character = {
-    x: 50,
-    y: 50,
+    x: 100,
+    y: 270,
     w: 50,
     h: 50,
     draw() {

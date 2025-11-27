@@ -1,4 +1,5 @@
 import { character } from "./character";
+import { floor } from "./floor";
 import platform from "platform";
 
 function setup() {
@@ -17,10 +18,11 @@ let x = 100;
 let y = 100;
 
 function draw() {
-    background(100, 100, 100);
+    background("#10164E");
 
     character.draw();
 	platform.draw();
+    floor.draw();
 
     platform.x -= 10;
     if(platform.x + platform.w < 0){
@@ -31,8 +33,6 @@ function draw() {
         character.y += 10;
     }
 
-    // Floor
-    line(0, 300, 400, 300);
 }
 
 function keyPressed(){
