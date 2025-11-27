@@ -14,8 +14,6 @@ function drawObstacle() {
     pop();
 }
 
-let x = 100;
-let y = 100;
 
 function draw() {
     background("#10164E");
@@ -29,14 +27,15 @@ function draw() {
         platform.x = 500;
     }
 
-    if(character.y + character.h < 300){
+    // land character
+    if(character.y + character.h < floor.y){
         character.y += 10;
     }
 
 }
 
-function keyPressed(){
-    if(character.y + character.h === 300){
+function mouseClicked(){
+    if(character.y + character.h === floor.y){
         character.y -= 80;
     }
 }

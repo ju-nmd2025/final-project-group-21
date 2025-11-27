@@ -16,5 +16,7 @@ export let character = {
         stroke("#0C0C00");
         rect(this.x, this.y, this.w, this.h);
         pop();
+
+        
     },
 };

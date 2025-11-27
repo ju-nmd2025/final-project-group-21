@@ -19,7 +19,7 @@ export let floor = {
         line(
             this.x,
             this.y + this.floorStroke / 2,
-            this.w,
+            this.x + this.w,
             this.y + this.floorStroke / 2
         );
         pop();
