@@ -1,8 +1,17 @@
-export let platform = {
-    x: 250,
-    y: 250,
-    w: 80,
-    h: 20,
+export default class Platform {
+    constructor(x,y,w,h){
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+
+    move(){
+            this.x -= 6;
+            if(this.x + this.w < 0){
+                this.x = 500
+            }
+    }
 
     draw() {
         push();
@@ -17,5 +26,5 @@ export let platform = {
 
         rect(this.x, this.y, this.w, this.h);
         pop();
-    },
+    }
 };

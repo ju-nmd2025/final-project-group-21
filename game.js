@@ -1,6 +1,6 @@
 import { character } from "./character";
 import { floor } from "./floor";
-import platform from "platform";
+import Platform from "platform";
 
 function setup() {
     createCanvas(550, 400);
@@ -14,32 +14,39 @@ function drawObstacle() {
     pop();
 }
 
+let platforms = [
+    new Platform(250, 250, 80, 20),
+    new Platform(600, 250, 80, 20),
+];
+
 function draw() {
     background("#10164E");
 
     //platform movement
-    platform.x -= 6;
-    if (platform.x + platform.w < 0) {
-        platform.x = 500;
+    for (const platform of platforms) {
+        platform.move();
     }
 
-    //
+    //set Current platform 
+    const currentPlatform = standingPlatform(character,platforms);
 
     // land character n not standing on platform
     if (
         character.y + character.h < floor.y &&
-        !isOnPlatform(character, platform)
+        !currentPlatform
     ) {
         character.y += 10;
     }
 
     //standing exactly on platform service
-    if (isOnPlatform(character, platform)) {
-        character.y = platform.y - character.h;
+    if (currentPlatform) {
+        character.y = currentPlatform.y - character.h;
     }
 
     character.draw();
-    platform.draw();
+    for (const platform of platforms) {
+        platform.draw();
+    }
     floor.draw();
 }
 
@@ -60,6 +67,16 @@ function isOnPlatform(character, platform) {
     }
     //else drop
     return false;
+}
+
+//find platform that char are standing
+function standingPlatform(character, platforms) {
+    for (const platform of platforms) {
+        if (isOnPlatform(character, platform)) {
+            return platform;
+        }
+    }
+    return null;
 }
 
 function mouseClicked() {
