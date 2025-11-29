@@ -15,8 +15,9 @@ export let character = {
         fill("#F7F704");
         stroke("#0C0C00");
         rect(this.x, this.y, this.w, this.h);
-        pop();
-
-        
+        pop();   
     },
+
+    
+
 };
