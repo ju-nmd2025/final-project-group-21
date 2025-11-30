@@ -59,6 +59,7 @@ function draw() {
         spike.draw();
     }
     floor.draw();
+
 }
 
 function isOnPlatform(character, platform) {
