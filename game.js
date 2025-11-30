@@ -16,7 +16,9 @@ function drawObstacle() {
 
 let platforms = [
     new Platform(250, 250, 80, 20),
-    new Platform(600, 250, 80, 20),
+    new Platform(160, 220, 80, 20),
+    new Platform(500, 280, 80, 20),
+    new Platform(400, 200, 80, 20),
 ];
 
 function draw() {
@@ -27,14 +29,11 @@ function draw() {
         platform.move();
     }
 
-    //set Current platform 
-    const currentPlatform = standingPlatform(character,platforms);
+    //set Current platform
+    const currentPlatform = standingPlatform(character, platforms);
 
     // land character n not standing on platform
-    if (
-        character.y + character.h < floor.y &&
-        !currentPlatform
-    ) {
+    if (character.y + character.h < floor.y && !currentPlatform) {
         character.y += 10;
     }
 
@@ -69,7 +68,7 @@ function isOnPlatform(character, platform) {
     return false;
 }
 
-//find platform that char are standing
+//focus on platform that char are standing
 function standingPlatform(character, platforms) {
     for (const platform of platforms) {
         if (isOnPlatform(character, platform)) {
@@ -80,7 +79,10 @@ function standingPlatform(character, platforms) {
 }
 
 function mouseClicked() {
-    if (character.y + character.h === floor.y) {
+    if (
+        character.y + character.h === floor.y ||
+        standingPlatform(character, platforms) !== null
+    ) {
         character.y -= 100;
     }
 }
