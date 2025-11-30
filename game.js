@@ -1,6 +1,7 @@
 import { character } from "./character";
 import { floor } from "./floor";
 import Platform from "platform";
+import Spike from "./spike";
 
 function setup() {
     createCanvas(550, 400);
@@ -18,15 +19,22 @@ let platforms = [
     new Platform(250, 250, 80, 20),
     new Platform(160, 220, 80, 20),
     new Platform(500, 280, 80, 20),
-    new Platform(400, 200, 80, 20),
+];
+
+let spikes = [
+    new Spike(20, 320, 40, 280, 60, 320),
+    new Spike(60, 320, 80, 280, 100, 320),
 ];
 
 function draw() {
     background("#10164E");
 
-    //platform movement
+    //platform & spike movement
     for (const platform of platforms) {
         platform.move();
+    }
+    for (const spike of spikes){
+        spike.move();
     }
 
     //set Current platform
@@ -42,9 +50,13 @@ function draw() {
         character.y = currentPlatform.y - character.h;
     }
 
+    // Drawing functions
     character.draw();
     for (const platform of platforms) {
         platform.draw();
+    }
+    for (const spike of spikes) {
+        spike.draw();
     }
     floor.draw();
 }

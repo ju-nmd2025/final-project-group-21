@@ -9,7 +9,7 @@ export default class Platform {
     move(){
             this.x -= 6;
             if(this.x + this.w < 0){
-                this.x = 500
+                this.x = 500;
             }
     }
 
@@ -27,4 +27,4 @@ export default class Platform {
         rect(this.x, this.y, this.w, this.h);
         pop();
     }
-};
+}
