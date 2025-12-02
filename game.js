@@ -4,21 +4,13 @@ import Platform from "platform";
 import Spike from "./spike";
 
 function setup() {
-    createCanvas(550, 400);
-}
-
-// Obstacle / Spike / Death
-function drawObstacle() {
-    push();
-    fill("red");
-    triangle(180, 300, 210, 240, 240, 300);
-    pop();
+    createCanvas(500, 600);
 }
 
 let platforms = [
     new Platform(250, 250, 80, 20),
-    new Platform(160, 220, 80, 20),
-    new Platform(500, 280, 80, 20),
+    new Platform(120, 120, 80, 20),
+    new Platform(300, 140, 80, 20),
 ];
 
 let spikes = [
@@ -29,13 +21,6 @@ let spikes = [
 function draw() {
     background("#10164E");
 
-    //platform & spike movement
-    for (const platform of platforms) {
-        platform.move();
-    }
-    for (const spike of spikes){
-        spike.move();
-    }
 
     //set Current platform
     const currentPlatform = standingPlatform(character, platforms);

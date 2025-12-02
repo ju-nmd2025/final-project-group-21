@@ -1,7 +1,7 @@
 export let floor = {
     x: 0,
-    y: 320,
-    w: 550,
+    y: 520,
+    w: 500,
     h: 80,
     floorStroke: 5,
     draw() {
@@ -25,10 +25,10 @@ export let floor = {
         pop();
 
         //decorations
-        backgroundPattern(640, 410, 560, 330, 480, 410);
-        backgroundPattern(460, 410, 380, 330, 300, 410);
-        backgroundPattern(280, 410, 200, 330, 120, 410);
-        backgroundPattern(100, 410, 20, 330, -60, 410);
+        backgroundPattern(640, 600, 560, 500, 480, 600);
+        backgroundPattern(460, 600, 380, 500, 300, 600);
+        backgroundPattern(280, 600, 200, 500, 120, 600);
+        backgroundPattern(100, 600, 20, 500, -60, 600);
     },
 };
 
