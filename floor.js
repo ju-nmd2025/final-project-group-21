@@ -25,10 +25,42 @@ export let floor = {
         pop();
 
         //decorations
-        backgroundPattern(640, 600, 560, 500, 480, 600);
-        backgroundPattern(460, 600, 380, 500, 300, 600);
-        backgroundPattern(280, 600, 200, 500, 120, 600);
-        backgroundPattern(100, 600, 20, 500, -60, 600);
+
+        const bottomPattern = this.y + this.h;
+        const topPattern = this.y - 20;
+
+        backgroundPattern(
+            640,
+            bottomPattern,
+            560,
+            topPattern,
+            480,
+            bottomPattern
+        );
+        backgroundPattern(
+            460,
+            bottomPattern,
+            380,
+            topPattern,
+            300,
+            bottomPattern
+        );
+        backgroundPattern(
+            280,
+            bottomPattern,
+            200,
+            topPattern,
+            120,
+            bottomPattern
+        );
+        backgroundPattern(
+            100,
+            bottomPattern,
+            20,
+            topPattern,
+            -60,
+            bottomPattern
+        );
     },
 };
 

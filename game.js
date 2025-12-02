@@ -5,7 +5,7 @@ import Spike from "./spike";
 
 let platforms = [
     new Platform(200, 450, 80, 20),
-    new Platform(250, 250, 80, 20),
+    new Platform(280, 250, 80, 20),
     new Platform(120, 120, 80, 20),
     new Platform(300, 140, 80, 20),
 ];
@@ -15,9 +15,10 @@ let spikes = [
     new Spike(60, 320, 80, 280, 100, 320),
 ];
 
-let fallSpeed = 6;
+let fallSpeed = 2;
 let jumpHeight = 100;
 let moveSpeed = 8;
+const limitLine = 200; //max line character
 
 function setup() {
     createCanvas(500, 600);
@@ -57,6 +58,26 @@ function draw() {
         character.y -= jumpHeight;
     } else {
         character.y += fallSpeed;
+    }
+
+    // scroll on jumping
+    if (character.y < limitLine) {
+        const balanceRange = limitLine - character.y;
+
+        character.y = limitLine;
+
+        //pull down platforms
+        for (const plaform of platforms) {
+            plaform.y += balanceRange;
+        }
+        for (const spike of spikes) {
+            spike.y1 += balanceRange;
+            spike.y2 += balanceRange;
+            spike.y3 += balanceRange;
+        }
+
+        //pull down floor
+        floor.y += balanceRange;
     }
 
     // Drawing functions
