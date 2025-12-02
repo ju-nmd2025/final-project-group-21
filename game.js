@@ -3,11 +3,8 @@ import { floor } from "./floor";
 import Platform from "platform";
 import Spike from "./spike";
 
-function setup() {
-    createCanvas(500, 600);
-}
-
 let platforms = [
+    new Platform(200, 450, 80, 20),
     new Platform(250, 250, 80, 20),
     new Platform(120, 120, 80, 20),
     new Platform(300, 140, 80, 20),
@@ -18,21 +15,30 @@ let spikes = [
     new Spike(60, 320, 80, 280, 100, 320),
 ];
 
+let fallSpeed = 6;
+let jumpHeight = 100;
+
+function setup() {
+    createCanvas(500, 600);
+
+    const startPlatform = platforms[0]; //set start position
+    character.x = startPlatform.x + startPlatform.w / 2 - character.w / 2;
+    character.y = startPlatform.y - character.h;
+}
+
 function draw() {
     background("#10164E");
-
-
     //set Current platform
     const currentPlatform = standingPlatform(character, platforms);
 
-    // land character n not standing on platform
-    if (character.y + character.h < floor.y && !currentPlatform) {
-        character.y += 10;
-    }
-
-    //standing exactly on platform service
+    //auto jump on platform
     if (currentPlatform) {
+        // set character standing on platform
         character.y = currentPlatform.y - character.h;
+        // jump 
+        character.y -= jumpHeight;
+    } else {
+        character.y += fallSpeed;
     }
 
     // Drawing functions
@@ -44,7 +50,6 @@ function draw() {
         spike.draw();
     }
     floor.draw();
-
 }
 
 function isOnPlatform(character, platform) {
@@ -59,7 +64,11 @@ function isOnPlatform(character, platform) {
         character.x < platform.x + platform.w;
 
     //standing on platform
-    if (colliding && charBottom === platformTop) {
+    if (
+        colliding &&
+        charBottom >= platformTop && 
+        charBottom <= platformTop + fallSpeed //not fall too deep 1 fall
+    ) {
         return true;
     }
     //else drop
@@ -76,11 +85,3 @@ function standingPlatform(character, platforms) {
     return null;
 }
 
-function mouseClicked() {
-    if (
-        character.y + character.h === floor.y ||
-        standingPlatform(character, platforms) !== null
-    ) {
-        character.y -= 100;
-    }
-}
