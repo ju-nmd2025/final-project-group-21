@@ -42,11 +42,11 @@ function draw() {
     if (character.x < 0) {
         character.x = 0;
     }
-    if (character.x + character.w > 500) {
-        character.x = 500 - character.w;
+    if (character.x + character.w > width) {
+        character.x = width - character.w;
     }
 
-    //set Current platform
+    //set current platform
     const currentPlatform = standingPlatform(character, platforms);
 
     //auto jump on platform
