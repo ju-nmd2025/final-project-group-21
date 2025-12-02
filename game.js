@@ -17,6 +17,7 @@ let spikes = [
 
 let fallSpeed = 6;
 let jumpHeight = 100;
+let moveSpeed = 8;
 
 function setup() {
     createCanvas(500, 600);
@@ -28,6 +29,23 @@ function setup() {
 
 function draw() {
     background("#10164E");
+
+    //key pressed movement
+    if (keyIsDown(LEFT_ARROW)) {
+        character.x -= moveSpeed;
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+        character.x += moveSpeed;
+    }
+
+    //stay in canvas
+    if (character.x < 0) {
+        character.x = 0;
+    }
+    if (character.x + character.w > 500) {
+        character.x = 500 - character.w;
+    }
+
     //set Current platform
     const currentPlatform = standingPlatform(character, platforms);
 
@@ -35,7 +53,7 @@ function draw() {
     if (currentPlatform) {
         // set character standing on platform
         character.y = currentPlatform.y - character.h;
-        // jump 
+        // jump
         character.y -= jumpHeight;
     } else {
         character.y += fallSpeed;
@@ -66,7 +84,7 @@ function isOnPlatform(character, platform) {
     //standing on platform
     if (
         colliding &&
-        charBottom >= platformTop && 
+        charBottom >= platformTop &&
         charBottom <= platformTop + fallSpeed //not fall too deep 1 fall
     ) {
         return true;
@@ -84,4 +102,3 @@ function standingPlatform(character, platforms) {
     }
     return null;
 }
-
