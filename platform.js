@@ -1,15 +1,24 @@
 export default class Platform {
-    constructor(x, y, w, h) {
+    constructor(x, y, w, h, move = false) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+
+        //movement
+        this.move = move;
+        this.speed = random(1, 3);
+        this.direction = random([-1, 1]);
     }
 
-    move() {
-        this.x -= 6;
-        if (this.x + this.w < 0) {
-            this.x = 500;
+    moveLeftRight() {
+        if (this.move === false) {
+            return; //stop when move = false
+        } else {
+            this.x += this.speed * this.direction; //left or right base on - / +
+            if (this.x < 0 || this.x + this.w >= width) {
+                this.direction *= -1; // change direction
+            }
         }
     }
 

@@ -10,7 +10,7 @@ let platforms = [
     new Platform(120, 120, 80, 20),
     new Platform(300, 140, 80, 20),
     //prepared platforms
-    new Platform(100, 550, 80, 20),
+    new Platform(100, 550, 80, 20, true),
     new Platform(380, 550, 80, 20),
 ];
 
@@ -93,6 +93,7 @@ function draw() {
     // Drawing functions
     character.draw();
     for (const platform of platforms) {
+        platform.moveLeftRight();
         platform.draw();
     }
     for (const spike of spikes) {
@@ -148,4 +149,3 @@ function resetPlatform(platform) {
     }
     platform.y = highestPY - random(80, 120);
 }
-
