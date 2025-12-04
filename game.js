@@ -136,15 +136,16 @@ function standingPlatform(character, platforms) {
 
 function resetPlatform(platform) {
     //random x for platform (padding 20px)
-    platform.x = random(20, width - 20 - platform.w);
+    platform.x = random(40, width - 40 - platform.w);
 
-    //get the lowest height
+    //get the starting point to find the highest
     let highestPY = platforms[0].y;
     for (const p of platforms) {
-        //match the y with the highest platform exluding the lowest
+        //find the highest & ignore the one being reset
         if (p !== platform && p.y < highestPY) {
             highestPY = p.y;
         }
     }
     platform.y = highestPY - random(80, 120);
 }
+
