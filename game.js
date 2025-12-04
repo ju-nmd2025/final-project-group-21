@@ -4,6 +4,8 @@ import Platform from "platform";
 import Spike from "./spike";
 import platform from "platform";
 
+let gameState = "start";
+
 let platforms = [
     new Platform(200, 450, 80, 20),
     new Platform(280, 250, 80, 20),
@@ -35,7 +37,35 @@ function setup() {
 function draw() {
     background("#10164E");
 
-    //key pressed movement
+    switch(gameState) {
+        case "start":
+            startScreen();
+            break;
+        case "play":
+            runGame();
+            break;
+    }
+
+
+}
+
+function startScreen(){
+    push();
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    fill("white");
+    text("Play", 200, 200);
+    pop();
+}
+
+function mousePressed(){
+    if (gameState === "start"){
+        gameState = "play";
+    }
+}
+
+function runGame(){
+        //key pressed movement
     if (keyIsDown(LEFT_ARROW)) {
         character.x -= moveSpeed;
     }
