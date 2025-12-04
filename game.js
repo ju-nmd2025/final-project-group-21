@@ -2,12 +2,16 @@ import { character } from "./character";
 import { floor } from "./floor";
 import Platform from "platform";
 import Spike from "./spike";
+import platform from "platform";
 
 let platforms = [
     new Platform(200, 450, 80, 20),
     new Platform(280, 250, 80, 20),
     new Platform(120, 120, 80, 20),
     new Platform(300, 140, 80, 20),
+    //prepared platforms
+    new Platform(100, 550, 80, 20),
+    new Platform(380, 550, 80, 20),
 ];
 
 let spikes = [
@@ -15,8 +19,8 @@ let spikes = [
     new Spike(60, 320, 80, 280, 100, 320),
 ];
 
-let fallSpeed = 2;
-let jumpHeight = 100;
+let fallSpeed = 5;
+let jumpHeight = 200;
 let moveSpeed = 8;
 const limitLine = 200; //max line character
 
@@ -75,9 +79,15 @@ function draw() {
             spike.y2 += balanceRange;
             spike.y3 += balanceRange;
         }
-
         //pull down floor
         floor.y += balanceRange;
+    }
+
+    //reset platform func
+    for (const plaform of platforms) {
+        if (plaform.y > height) {
+            resetPlatform(plaform);
+        }
     }
 
     // Drawing functions
@@ -122,4 +132,19 @@ function standingPlatform(character, platforms) {
         }
     }
     return null;
+}
+
+function resetPlatform(platform) {
+    //random x for platform (padding 20px)
+    platform.x = random(20, width - 20 - platform.w);
+
+    //get the lowest height
+    let highestPY = platforms[0].y;
+    for (const p of platforms) {
+        //match the y with the highest platform exluding the lowest
+        if (p !== platform && p.y < highestPY) {
+            highestPY = p.y;
+        }
+    }
+    platform.y = highestPY - random(80, 120);
 }
