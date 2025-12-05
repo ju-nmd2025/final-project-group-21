@@ -5,15 +5,18 @@ import Spike from "./spike";
 import { startScreen } from "./startScreen";
 
 let gameState = "start";
+let plaformWidth = 80;
+let plaformHeight = 12;
 
 let platforms = [
-    new Platform(209, 450, 80, 20),
-    new Platform(280, 250, 80, 20),
-    new Platform(120, 120, 80, 20),
-    new Platform(300, 140, 80, 20),
+    new Platform(209, 450, plaformWidth, plaformHeight),
+    new Platform(280, 250, plaformWidth, plaformHeight),
+    new Platform(120, 120, plaformWidth, plaformHeight),
+    new Platform(300, 140, plaformWidth, plaformHeight),
     //prepared platforms
-    new Platform(100, 550, 80, 20, true),
-    new Platform(380, 550, 80, 20),
+    new Platform(100, 550, plaformWidth, plaformHeight, true),
+    new Platform(100, 550, plaformWidth, plaformHeight),
+    new Platform(140, 550, plaformWidth, plaformHeight, false, true),
 ];
 
 let spikes = [
@@ -45,9 +48,6 @@ function draw() {
     }
 }
 
-
-
-
 function runGame() {
     background("#10164E");
     //key pressed movement
@@ -71,6 +71,9 @@ function runGame() {
 
     //auto jump on platform
     if (currentPlatform) {
+        if (currentPlatform.canBreak) {
+            currentPlatform.broken = true;
+        }
         // set character standing on platform
         character.y = currentPlatform.y - character.h;
         // jump
@@ -164,6 +167,7 @@ function resetPlatform(platform) {
         }
     }
     platform.y = highestPY - random(80, 120);
+
+    //reset broken platform state
+    platform.broken = false;
 }
-
-
