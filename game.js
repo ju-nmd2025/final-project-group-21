@@ -46,11 +46,17 @@ function draw() {
 
 function startScreen() {
     background("#10164E");
+
     push();
+    textFont("Tahoma");
     textAlign(CENTER, CENTER);
-    textSize(32);
-    fill("white");
-    text("Gemetry Jump", width / 2, 120);
+    textStyle(BOLD);
+    textSize(55);
+    strokeWeight(6);
+    stroke("white");
+
+    fill("#65DD00");
+    text("GEOMETRY\nJump", width / 2, 120);
     pop();
 
     //floor
