@@ -29,8 +29,12 @@ export default class Platform {
         drawingContext.shadowOffsetX = 0;
         drawingContext.shadowOffsetY = 0;
         drawingContext.shadowColor = "#FFFFFF";
-
-        fill("#0B0623");
+        if(this.move === false){
+            fill("#0B0623");
+        } else {
+            fill("#9D1E94");
+        }
+        
         stroke("#FFFFFF");
 
         rect(this.x, this.y, this.w, this.h);
