@@ -2,7 +2,6 @@ import { character } from "./character";
 import { floor } from "./floor";
 import Platform from "platform";
 import Spike from "./spike";
-import platform from "platform";
 
 let gameState = "start";
 
@@ -35,9 +34,7 @@ function setup() {
 }
 
 function draw() {
-    background("#10164E");
-
-    switch(gameState) {
+    switch (gameState) {
         case "start":
             startScreen();
             break;
@@ -45,27 +42,62 @@ function draw() {
             runGame();
             break;
     }
-
-
 }
 
-function startScreen(){
+function startScreen() {
+    background("#10164E");
     push();
     textAlign(CENTER, CENTER);
     textSize(32);
     fill("white");
-    text("Play", 200, 200);
+    text("Gemetry Jump", width / 2, 120);
+    pop();
+
+    //floor
+    push();
+    noStroke();
+    fill("#1E105B");
+    rect(0, 520, 500, 80);
+    pop();
+
+    //stroke
+    push();
+    stroke("#5D5094");
+    strokeWeight(6);
+    line(0, 520, 500, 520);
+    pop();
+
+    //buttons
+
+    //patterns
+    startScreenPattern(640, 600, 560, 530, 480, 600);
+    startScreenPattern(460, 600, 380, 530, 300, 600);
+    startScreenPattern(280, 600, 200, 530, 120, 600);
+    startScreenPattern(100, 600, 20, 530, -60, 600);
+
+    //draw
+    character.draw();
+    platforms[0].draw();
+}
+
+function startScreenPattern(x1, y1, x2, y2, x3, y3) {
+    push();
+    fill("#0F082C");
+    stroke("#130A39");
+    strokeWeight(6);
+    triangle(x1, y1, x2, y2, x3, y3);
     pop();
 }
 
-function mousePressed(){
-    if (gameState === "start"){
+function mousePressed() {
+    if (gameState === "start") {
         gameState = "play";
     }
 }
 
-function runGame(){
-        //key pressed movement
+function runGame() {
+    background("#10164E");
+    //key pressed movement
     if (keyIsDown(LEFT_ARROW)) {
         character.x -= moveSpeed;
     }
