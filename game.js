@@ -46,7 +46,7 @@ function draw() {
 
 function startScreen() {
     background("#10164E");
-
+    
     push();
     textFont("Tahoma");
     textAlign(CENTER, CENTER);
@@ -74,47 +74,47 @@ function startScreen() {
     pop();
 
     //buttons
-        //rectangle
-        push();
-        //shadow
-        drawingContext.shadowBlur = 12;
-        drawingContext.shadowOffsetX = 0;
-        drawingContext.shadowOffsetY = 0;
-        drawingContext.shadowColor = "#050505ff";
-        noStroke();
-        fill("#0778B5");
-        rect(200,250,100,100);
-        pop();
+    //rectangle
+    push();
+    //shadow
+    drawingContext.shadowBlur = 12;
+    drawingContext.shadowOffsetX = 0;
+    drawingContext.shadowOffsetY = 0;
+    drawingContext.shadowColor = "#050505ff";
+    noStroke();
+    fill("#0778B5");
+    rect(200, 250, 100, 100);
+    pop();
 
-        //Plus
-        push();
-        //shadow
-        drawingContext.shadowBlur = 12;
-        drawingContext.shadowOffsetX = 0;
-        drawingContext.shadowOffsetY = 0;
-        drawingContext.shadowColor = "#05050550";
-        noStroke();
-        fill("#80E82F");
-        rect(191,280,118,40);
-        pop();
+    //Plus
+    push();
+    //shadow
+    drawingContext.shadowBlur = 12;
+    drawingContext.shadowOffsetX = 0;
+    drawingContext.shadowOffsetY = 0;
+    drawingContext.shadowColor = "#05050550";
+    noStroke();
+    fill("#80E82F");
+    rect(191, 280, 118, 40);
+    pop();
 
-        push();
-        noStroke();
-        fill("#80E82F");
-        rect(230,240,40,118);
-        pop();
+    push();
+    noStroke();
+    fill("#80E82F");
+    rect(230, 240, 40, 118);
+    pop();
 
-        //play
-        push();
-         //shadow
-        drawingContext.shadowBlur = 6;
-        drawingContext.shadowOffsetX = 0;
-        drawingContext.shadowOffsetY = 0;
-        drawingContext.shadowColor = "#05050550";
-        noStroke();
-        fill("white");
-        triangle(240,270,240,330,280,300);
-        pop();
+    //play
+    push();
+    //shadow
+    drawingContext.shadowBlur = 6;
+    drawingContext.shadowOffsetX = 0;
+    drawingContext.shadowOffsetY = 0;
+    drawingContext.shadowColor = "#05050550";
+    noStroke();
+    fill("white");
+    triangle(240, 270, 240, 330, 280, 300);
+    pop();
 
     //patterns
     startScreenPattern(640, 600, 560, 530, 480, 600);
@@ -138,7 +138,9 @@ function startScreenPattern(x1, y1, x2, y2, x3, y3) {
 
 function mousePressed() {
     if (gameState === "start") {
-        gameState = "play";
+        if (mouseX > 200 && mouseX < 300 && mouseY > 250 && mouseY < 350) {
+            gameState = "play";
+        }
     }
 }
 
