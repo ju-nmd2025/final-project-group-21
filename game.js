@@ -72,7 +72,8 @@ function runGame() {
     //auto jump on platform
     if (currentPlatform) {
         if (currentPlatform.canBreak) {
-            currentPlatform.broken = true;
+            // if the platform is breakable type
+            currentPlatform.broken = true; // change state
         }
         // set character standing on platform
         character.y = currentPlatform.y - character.h;
@@ -151,11 +152,11 @@ function standingPlatform(character, platforms) {
             return platform;
         }
     }
-    return null;
+    return null; //fall
 }
 
 function resetPlatform(platform) {
-    //random x for platform (padding 20px)
+    //random x for platform (padding 60px)
     platform.x = random(60, width - 60 - platform.w);
 
     //get the starting point to find the highest
