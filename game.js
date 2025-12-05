@@ -6,7 +6,7 @@ import Spike from "./spike";
 let gameState = "start";
 
 let platforms = [
-    new Platform(200, 450, 80, 20),
+    new Platform(209, 450, 80, 20),
     new Platform(280, 250, 80, 20),
     new Platform(120, 120, 80, 20),
     new Platform(300, 140, 80, 20),
@@ -123,6 +123,9 @@ function startScreen() {
     startScreenPattern(100, 600, 20, 530, -60, 600);
 
     //draw
+    character.x = 225;
+    character.y = 400;
+    platforms[0].x = 209;
     character.draw();
     platforms[0].draw();
 }
