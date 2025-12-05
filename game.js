@@ -173,6 +173,7 @@ function runGame() {
         // set character standing on platform
         character.y = currentPlatform.y - character.h;
         // jump
+
         character.y -= jumpHeight;
     } else {
         character.y += fallSpeed;
@@ -251,7 +252,7 @@ function standingPlatform(character, platforms) {
 
 function resetPlatform(platform) {
     //random x for platform (padding 20px)
-    platform.x = random(40, width - 40 - platform.w);
+    platform.x = random(60, width - 60 - platform.w);
 
     //get the starting point to find the highest
     let highestPY = platforms[0].y;
@@ -263,3 +264,5 @@ function resetPlatform(platform) {
     }
     platform.y = highestPY - random(80, 120);
 }
+
+
