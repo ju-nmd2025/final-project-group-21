@@ -148,7 +148,8 @@ function isOnPlatform(character, platform) {
 //focus on platform that char are standing
 function standingPlatform(character, platforms) {
     for (const platform of platforms) {
-        if (isOnPlatform(character, platform)) {
+        //if it's not broken, char can land
+        if (!platform.broken && isOnPlatform(character, platform)) {
             return platform;
         }
     }
@@ -172,3 +173,4 @@ function resetPlatform(platform) {
     //reset broken platform state
     platform.broken = false;
 }
+
