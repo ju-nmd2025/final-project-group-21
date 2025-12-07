@@ -15,9 +15,17 @@ export let character = {
         fill("#F7F704");
         stroke("#0C0C00");
         rect(this.x, this.y, this.w, this.h);
-        pop();   
+        pop();
+
+
+        //mouth
+        push();
+        fill("#09F5F7");
+        stroke("#0C0C00");
+        let cx = this.x + this.w / 2;
+        let topY = this.y + this.h - 25;
+        let botY = this.y + this.h - 10;
+        triangle(cx - 12, topY, cx + 12, topY, cx, botY);
+        pop();
     },
-
-    
-
 };
