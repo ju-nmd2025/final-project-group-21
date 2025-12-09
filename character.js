@@ -20,7 +20,7 @@ export let character = {
 
         //mouth
         push();
-        fill("#09F5F7");
+        fill("#0f6f71ff");
         stroke("#0C0C00");
         let cx = this.x + this.w / 2;
         let topY = this.y + this.h - 25;

@@ -173,4 +173,3 @@ function resetPlatform(platform) {
     //reset broken platform state
     platform.broken = false;
 }
-
