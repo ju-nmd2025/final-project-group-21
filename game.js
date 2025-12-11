@@ -172,6 +172,7 @@ function standingPlatform(character, platforms) {
     return null; //fall
 }
 
+
 function resetPlatform(platform) {
     //random x for platform (padding 60px)
     platform.x = random(60, width - 60 - platform.w);
@@ -197,6 +198,7 @@ function runGameBackground() {
     //score
     push();
     fill("white");
+    textStyle(BOLD);
     text("Score: " + score, 20, 30);
     pop();
 
