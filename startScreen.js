@@ -14,6 +14,7 @@ let startScreen = {
         text("GEOMETRY\nJump", width / 2, 120);
         pop();
 
+
         //floor
         push();
         noStroke();

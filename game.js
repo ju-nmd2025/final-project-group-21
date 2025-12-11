@@ -24,6 +24,7 @@ let spikes = [
     new Spike(60, 320, 80, 280, 100, 320),
 ];
 
+let insTextY = 488;
 let fallSpeed = 5;
 let jumpHeight = 200;
 let moveSpeed = 8;
@@ -50,6 +51,14 @@ function draw() {
 
 function runGame() {
     background("#10164E");
+
+    //instruction text
+    push();
+    textAlign(CENTER, CENTER);
+    fill("#dbdbdbff");
+    text(" ←  → \n arrow keys to move", width / 2, insTextY);
+    pop();
+
     //key pressed movement
     if (keyIsDown(LEFT_ARROW)) {
         character.x -= moveSpeed;
@@ -99,6 +108,9 @@ function runGame() {
             spike.y2 += balanceRange;
             spike.y3 += balanceRange;
         }
+
+        //pull down text
+        insTextY += balanceRange;
         //pull down floor
         floor.y += balanceRange;
     }
