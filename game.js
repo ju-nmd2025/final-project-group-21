@@ -30,6 +30,10 @@ let jumpHeight = 200;
 let moveSpeed = 8;
 const limitLine = 200; //max line character
 
+//score
+let score = 0;
+let lastPlatform = null;
+
 function setup() {
     createCanvas(500, 600);
 
@@ -74,6 +78,12 @@ function runGame() {
 
     //auto jump on platform
     if (currentPlatform) {
+        //if char land on platform + score
+        if (currentPlatform !== lastPlatform) {
+            score += 50;
+            lastPlatform = currentPlatform;
+        }
+
         if (currentPlatform.canBreak) {
             // if the platform is breakable type
             currentPlatform.broken = true; // change state
@@ -183,6 +193,12 @@ function resetPlatform(platform) {
 function runGameBackground() {
     let bgColor = "#00000010";
     let strokeColor = "#00000015";
+
+    //score
+    push();
+    fill("white");
+    text("Score: " + score, 20, 30);
+    pop();
 
     //instruction text
     push();
