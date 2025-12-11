@@ -51,13 +51,7 @@ function draw() {
 
 function runGame() {
     background("#10164E");
-
-    //instruction text
-    push();
-    textAlign(CENTER, CENTER);
-    fill("#dbdbdbff");
-    text(" ←  → \n arrow keys to move", width / 2, insTextY);
-    pop();
+    runGameBackground();
 
     //key pressed movement
     if (keyIsDown(LEFT_ARROW)) {
@@ -184,4 +178,94 @@ function resetPlatform(platform) {
 
     //reset broken platform state
     platform.broken = false;
+}
+
+function runGameBackground() {
+    let bgColor = "#00000010";
+    let strokeColor = "#00000015";
+
+    //instruction text
+    push();
+    textAlign(CENTER, CENTER);
+    fill("#dbdbdbff");
+    text(" ←  → \n arrow keys to move", width / 2, insTextY);
+    pop();
+
+    //background patterns
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(20, 20, 200, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(20, 40 + 200, 200, 100);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200, 20, 200, 100);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(20 + 200 + 20 + 200 + 20, 20, 200, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(20, 20 + 200 + 20 + 100 + 20, 200, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200, 40 + 100, 200, 80);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200, 40 + 200, 200, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200 + 200 + 20, 40 + 200, 200, 100);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200 + 200 + 20, 40 + 200 + 100 + 20, 200, 400);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200, 40 + 200 + 200 + 20, 90, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200 + 100 + 10, 40 + 200 + 200 + 20, 90, 200);
+    pop();
 }
