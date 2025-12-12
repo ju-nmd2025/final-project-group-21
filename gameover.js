@@ -56,16 +56,15 @@ function triangle4() {
 
 function finishText() {
   push();
-  drawingContext.shadowBlur = 15;
+  drawingContext.shadowBlur = 12;
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
-  drawingContext.shadowColor = "#d82000ff";
-  strokeWeight(6);
-  stroke("#d82000ff");
+  drawingContext.shadowColor = "#a31800ff";
   textFont("Tahoma");
   textAlign(CENTER, CENTER);
   textStyle(BOLD);
   textSize(55);
+  noStroke();
   fill("#ff2600ff");
   text("GAME OVER!", 250, 200);
   pop();
