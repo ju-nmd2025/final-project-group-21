@@ -140,3 +140,15 @@ function draw() {
   replayText();
   quitText();
 }
+
+function mousePressed() {
+  if (mouseX > 75 && mouseX < 240 && mouseY > 270 && mouseY < 350) {
+    console.log("left");
+  }
+}
+
+function mouseClicked() {
+  if (mouseX > 260 && mouseX < 425 && mouseY > 270 && mouseY < 350) {
+    console.log("right");
+  }
+}
