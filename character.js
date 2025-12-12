@@ -1,6 +1,6 @@
 export let character = {
-    x: 100,
-    y: 270,
+    x: 225,
+    y: 400,
     w: 50,
     h: 50,
     draw() {
@@ -15,9 +15,17 @@ export let character = {
         fill("#F7F704");
         stroke("#0C0C00");
         rect(this.x, this.y, this.w, this.h);
-        pop();   
+        pop();
+
+
+        //mouth
+        push();
+        fill("#35de7bff");
+        stroke("#0C0C00");
+        let cx = this.x + this.w / 2;
+        let topY = this.y + this.h - 25;
+        let botY = this.y + this.h - 10;
+        triangle(cx - 12, topY, cx + 12, topY, cx, botY);
+        pop();
     },
-
-    
-
 };

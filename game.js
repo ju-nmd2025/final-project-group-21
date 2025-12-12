@@ -2,18 +2,21 @@ import { character } from "./character";
 import { floor } from "./floor";
 import Platform from "platform";
 import Spike from "./spike";
-import platform from "platform";
+import { startScreen } from "./startScreen";
 
 let gameState = "start";
+let plaformWidth = 80;
+let plaformHeight = 12;
 
 let platforms = [
-    new Platform(200, 450, 80, 20),
-    new Platform(280, 250, 80, 20),
-    new Platform(120, 120, 80, 20),
-    new Platform(300, 140, 80, 20),
+    new Platform(209, 450, plaformWidth, plaformHeight),
+    new Platform(280, 250, plaformWidth, plaformHeight),
+    new Platform(120, 120, plaformWidth, plaformHeight),
+    new Platform(300, 140, plaformWidth, plaformHeight),
     //prepared platforms
-    new Platform(100, 550, 80, 20, true),
-    new Platform(380, 550, 80, 20),
+    new Platform(100, 550, plaformWidth, plaformHeight, true),
+    new Platform(100, 550, plaformWidth, plaformHeight),
+    new Platform(140, 550, plaformWidth, plaformHeight, false, true),
 ];
 
 let spikes = [
@@ -21,10 +24,15 @@ let spikes = [
     new Spike(60, 320, 80, 280, 100, 320),
 ];
 
+let insTextY = 488;
 let fallSpeed = 5;
 let jumpHeight = 200;
 let moveSpeed = 8;
 const limitLine = 200; //max line character
+
+//score
+let score = 0;
+let lastPlatform = null;
 
 function setup() {
     createCanvas(500, 600);
@@ -35,37 +43,21 @@ function setup() {
 }
 
 function draw() {
-    background("#10164E");
-
-    switch(gameState) {
+    switch (gameState) {
         case "start":
-            startScreen();
+            startScreen.draw();
             break;
         case "play":
             runGame();
             break;
     }
-
-
 }
 
-function startScreen(){
-    push();
-    textAlign(CENTER, CENTER);
-    textSize(32);
-    fill("white");
-    text("Play", 200, 200);
-    pop();
-}
+function runGame() {
+    background("#10164E");
+    runGameBackground();
 
-function mousePressed(){
-    if (gameState === "start"){
-        gameState = "play";
-    }
-}
-
-function runGame(){
-        //key pressed movement
+    //key pressed movement
     if (keyIsDown(LEFT_ARROW)) {
         character.x -= moveSpeed;
     }
@@ -86,9 +78,20 @@ function runGame(){
 
     //auto jump on platform
     if (currentPlatform) {
+        //if char land on platform + score
+        if (currentPlatform !== lastPlatform) {
+            score += 50;
+            lastPlatform = currentPlatform;
+        }
+
+        if (currentPlatform.canBreak) {
+            // if the platform is breakable type
+            currentPlatform.broken = true; // change state
+        }
         // set character standing on platform
         character.y = currentPlatform.y - character.h;
         // jump
+
         character.y -= jumpHeight;
     } else {
         character.y += fallSpeed;
@@ -109,6 +112,9 @@ function runGame(){
             spike.y2 += balanceRange;
             spike.y3 += balanceRange;
         }
+
+        //pull down text
+        insTextY += balanceRange;
         //pull down floor
         floor.y += balanceRange;
     }
@@ -158,16 +164,18 @@ function isOnPlatform(character, platform) {
 //focus on platform that char are standing
 function standingPlatform(character, platforms) {
     for (const platform of platforms) {
-        if (isOnPlatform(character, platform)) {
+        //if it's not broken, char can land
+        if (!platform.broken && isOnPlatform(character, platform)) {
             return platform;
         }
     }
-    return null;
+    return null; //fall
 }
 
+
 function resetPlatform(platform) {
-    //random x for platform (padding 20px)
-    platform.x = random(40, width - 40 - platform.w);
+    //random x for platform (padding 60px)
+    platform.x = random(60, width - 60 - platform.w);
 
     //get the starting point to find the highest
     let highestPY = platforms[0].y;
@@ -178,4 +186,104 @@ function resetPlatform(platform) {
         }
     }
     platform.y = highestPY - random(80, 120);
+
+    //reset broken platform state
+    platform.broken = false;
+}
+
+function runGameBackground() {
+    let bgColor = "#00000010";
+    let strokeColor = "#00000015";
+
+    //score
+    push();
+    fill("white");
+    textStyle(BOLD);
+    text("Score: " + score, 20, 30);
+    pop();
+
+    //instruction text
+    push();
+    textAlign(CENTER, CENTER);
+    fill("#dbdbdbff");
+    text(" ←  → \n arrow keys to move", width / 2, insTextY);
+    pop();
+
+    //background patterns
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(20, 20, 200, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(20, 40 + 200, 200, 100);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200, 20, 200, 100);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(20 + 200 + 20 + 200 + 20, 20, 200, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(20, 20 + 200 + 20 + 100 + 20, 200, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200, 40 + 100, 200, 80);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200, 40 + 200, 200, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200 + 200 + 20, 40 + 200, 200, 100);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200 + 200 + 20, 40 + 200 + 100 + 20, 200, 400);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200, 40 + 200 + 200 + 20, 90, 200);
+    pop();
+
+    push();
+    strokeWeight(2);
+    stroke(strokeColor);
+    fill(bgColor);
+    rect(40 + 200 + 100 + 10, 40 + 200 + 200 + 20, 90, 200);
+    pop();
 }

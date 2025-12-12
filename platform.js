@@ -1,5 +1,5 @@
 export default class Platform {
-    constructor(x, y, w, h, move = false) {
+    constructor(x, y, w, h, move = false, canBreak = false) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -9,6 +9,10 @@ export default class Platform {
         this.move = move;
         this.speed = random(1, 3);
         this.direction = random([-1, 1]);
+
+        //break
+        this.canBreak = canBreak;
+        this.broken = false; //state
     }
 
     moveLeftRight() {
@@ -23,14 +27,26 @@ export default class Platform {
     }
 
     draw() {
+        if (this.broken === true) {
+            // if the platform is broken, stop drawing
+            return;
+        }
         push();
         //shadow
         drawingContext.shadowBlur = 12;
         drawingContext.shadowOffsetX = 0;
         drawingContext.shadowOffsetY = 0;
         drawingContext.shadowColor = "#FFFFFF";
+        if (this.move === false) {
+            fill("#0B0623");
+        }
+        if (this.move === true) {
+            fill("#9D1E94");
+        }
+        if (this.canBreak === true) {
+            fill("#196B60");
+        }
 
-        fill("#0B0623");
         stroke("#FFFFFF");
 
         rect(this.x, this.y, this.w, this.h);
