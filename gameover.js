@@ -2,6 +2,7 @@ function setup() {
   createCanvas(500, 600);
 }
 
+//floor detail @ bottom
 function floorDetail() {
   push();
   noStroke();
@@ -10,6 +11,7 @@ function floorDetail() {
   pop();
 }
 
+//line detail @ bottom
 function lineDetail() {
   push();
   stroke("#5D5094");
@@ -18,6 +20,7 @@ function lineDetail() {
   pop();
 }
 
+//triangle furthest right
 function triangle1() {
   push();
   fill("#0F082C");
@@ -27,6 +30,7 @@ function triangle1() {
   pop();
 }
 
+//triangle right
 function triangle2() {
   push();
   fill("#0F082C");
@@ -36,6 +40,7 @@ function triangle2() {
   pop();
 }
 
+//triangle left
 function triangle3() {
   push();
   fill("#0F082C");
@@ -45,6 +50,7 @@ function triangle3() {
   pop();
 }
 
+//triangle furthest left
 function triangle4() {
   push();
   fill("#0F082C");
@@ -54,7 +60,8 @@ function triangle4() {
   pop();
 }
 
-function finishText() {
+//game over! text
+function gameoverText() {
   push();
   drawingContext.shadowBlur = 12;
   drawingContext.shadowOffsetX = 0;
@@ -70,6 +77,7 @@ function finishText() {
   pop();
 }
 
+//right rectangle
 function replayRectLeft() {
   push();
   strokeWeight(4);
@@ -83,6 +91,7 @@ function replayRectLeft() {
   pop();
 }
 
+//left rectangle
 function replayRectRight() {
   push();
   strokeWeight(4);
@@ -96,6 +105,7 @@ function replayRectRight() {
   pop();
 }
 
+//replay text in left rectangle
 function replayText() {
   push();
   drawingContext.shadowBlur = 10;
@@ -111,6 +121,7 @@ function replayText() {
   text("REPLAY", 159, 315);
 }
 
+//quit text in right rectangle
 function quitText() {
   push();
   drawingContext.shadowBlur = 10;
@@ -134,7 +145,7 @@ function draw() {
   triangle2();
   triangle3();
   triangle4();
-  finishText();
+  gameoverText();
   replayRectLeft();
   replayRectRight();
   replayText();
