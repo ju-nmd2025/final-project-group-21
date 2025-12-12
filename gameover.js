@@ -75,6 +75,42 @@ function quitText() {
   text("QUIT", 341, 315);
 }
 
+function triangle1() {
+  push();
+  fill("#0F082C");
+  stroke("#130A39");
+  strokeWeight(6);
+  triangle(640, 600, 560, 530, 480, 600);
+  pop();
+}
+
+function triangle2() {
+  push();
+  fill("#0F082C");
+  stroke("#130A39");
+  strokeWeight(6);
+  triangle(460, 600, 380, 530, 300, 600);
+  pop();
+}
+
+function triangle3() {
+  push();
+  fill("#0F082C");
+  stroke("#130A39");
+  strokeWeight(6);
+  triangle(280, 600, 200, 530, 120, 600);
+  pop();
+}
+
+function triangle4() {
+  push();
+  fill("#0F082C");
+  stroke("#130A39");
+  strokeWeight(6);
+  triangle(100, 600, 20, 530, -60, 600);
+  pop();
+}
+
 function draw() {
   background("#10164E");
   finishText();
@@ -82,4 +118,8 @@ function draw() {
   replayRectRight();
   replayText();
   quitText();
+  triangle1();
+  triangle2();
+  triangle3();
+  triangle4();
 }
