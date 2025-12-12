@@ -4,7 +4,7 @@ function setup() {
 
 function finishText() {
   push();
-  drawingContext.shadowBlur = 12;
+  drawingContext.shadowBlur = 15;
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
   drawingContext.shadowColor = "#d82000ff";
@@ -19,73 +19,65 @@ function finishText() {
   pop();
 }
 
-function bruh() {
-  push();
-  noStroke();
-  fill("#1E105B");
-  rect(0, 520, 500, 80);
-  pop();
-}
-
-function bruhx() {
-  push();
-  stroke("#5D5094");
-  strokeWeight(6);
-  line(0, 520, 500, 520);
-  pop();
-}
-
-function btns() {
+function replayRectLeft() {
   push();
   drawingContext.shadowBlur = 12;
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
-  drawingContext.shadowColor = "#050505ff";
+  drawingContext.shadowColor = "#000000ff";
   noStroke();
-  fill("#0778B5");
-  rect(200, 250, 100, 100);
+  fill("#80E82F");
+  rect(75, 275, 165, 75, 10, 10, 0, 10);
   pop();
 }
 
-function plus() {
+function replayRectRight() {
   push();
   drawingContext.shadowBlur = 12;
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
-  drawingContext.shadowColor = "#05050550";
+  drawingContext.shadowColor = "#000000ff";
   noStroke();
   fill("#80E82F");
-  rect(191, 280, 118, 40);
+  rect(260, 275, 165, 75, 10, 10, 10, 0);
   pop();
 }
 
-function feck() {
+function replayText() {
   push();
-  noStroke();
-  fill("#80E82F");
-  rect(230, 240, 40, 118);
-  pop();
-}
-
-function playButton() {
-  push();
-  drawingContext.shadowBlur = 6;
+  drawingContext.shadowBlur = 10;
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
-  drawingContext.shadowColor = "#05050550";
+  drawingContext.shadowColor = "#000000ff";
   noStroke();
+  textFont("Tahoma");
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  textSize(32);
   fill("white");
-  triangle(240, 270, 240, 330, 280, 300);
-  pop();
+  text("REPLAY", 159, 315);
+}
+
+function quitText() {
+  push();
+  drawingContext.shadowBlur = 10;
+  drawingContext.shadowOffsetX = 0;
+  drawingContext.shadowOffsetY = 0;
+  drawingContext.shadowColor = "#000000ff";
+  noStroke();
+  textFont("Tahoma");
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  textSize(32);
+  fill("white");
+  text("QUIT", 341, 315);
 }
 
 function draw() {
   background("#10164E");
   finishText();
-  bruh();
-  bruhx();
-  btns();
-  plus();
-  feck();
-  playButton();
+  replayRectLeft();
+  replayRectRight();
+  replayText();
+  quitText();
 }
