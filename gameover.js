@@ -21,11 +21,12 @@ function finishText() {
 
 function replayRectLeft() {
   push();
+  strokeWeight(4);
+  stroke("#0778B5");
   drawingContext.shadowBlur = 12;
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
   drawingContext.shadowColor = "#000000ff";
-  noStroke();
   fill("#80E82F");
   rect(75, 275, 165, 75, 10, 10, 0, 10);
   pop();
@@ -33,11 +34,12 @@ function replayRectLeft() {
 
 function replayRectRight() {
   push();
+  strokeWeight(4);
+  stroke("#0778B5");
   drawingContext.shadowBlur = 12;
   drawingContext.shadowOffsetX = 0;
   drawingContext.shadowOffsetY = 0;
   drawingContext.shadowColor = "#000000ff";
-  noStroke();
   fill("#80E82F");
   rect(260, 275, 165, 75, 10, 10, 10, 0);
   pop();
