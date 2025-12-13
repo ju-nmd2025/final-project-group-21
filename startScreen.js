@@ -85,6 +85,13 @@ export const startScreen = {
         character.draw();
         platforms[0].draw();
     },
+
+    click(mX, mY){
+        if(mX > 200 && mX<300 && mY > 250 && mY <350){
+            return "play";
+        }
+        return null;
+    }
 };
 
 function startScreenPattern(x1, y1, x2, y2, x3, y3) {
@@ -96,10 +103,10 @@ function startScreenPattern(x1, y1, x2, y2, x3, y3) {
     pop();
 }
 
-function mousePressed() {
-    if (gameState === "start") {
-        if (mouseX > 200 && mouseX < 300 && mouseY > 250 && mouseY < 350) {
-            gameState = "play";
-        }
-    }
-}
+// function mousePressed() {
+//     if (gameState === "start") {
+//         if (mouseX > 200 && mouseX < 300 && mouseY > 250 && mouseY < 350) {
+//             gameState = "play";
+//         }
+//     }
+// }

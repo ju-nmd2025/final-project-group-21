@@ -101,7 +101,7 @@ function runGame() {
     }
 
     // dead char
-    if(character.y > height){
+    if (character.y > height) {
         gameState = "end";
         return; //stop lg
     }
@@ -180,7 +180,6 @@ function standingPlatform(character, platforms) {
     }
     return null; //fall
 }
-
 
 function resetPlatform(platform) {
     //random x for platform (padding 60px)
@@ -295,4 +294,20 @@ function runGameBackground() {
     fill(bgColor);
     rect(40 + 200 + 100 + 10, 40 + 200 + 200 + 20, 90, 200);
     pop();
+}
+
+function mouseClicked() {
+    if (gameState === "start") {
+        let process = startScreen.click(mouseX, mouseY);
+        if (process === "play") {
+            gameState = "play";
+        }
+    }
+
+    if (gameState === "end") {
+        let process = endScreen.click(mouseX, mouseY);
+        if (process === "quit") {
+            gameState = "start";
+        }
+    }
 }
