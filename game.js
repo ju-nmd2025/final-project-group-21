@@ -21,7 +21,7 @@ let platforms = [
 ];
 
 //save start platform position
-for(let platform of platforms){
+for (let platform of platforms) {
     platform.startX = platform.x;
     platform.startY = platform.y;
 }
@@ -50,6 +50,14 @@ function setup() {
 }
 
 function draw() {
+    //reset style
+    drawingContext.shadowBlur = 0;
+    drawingContext.shadowColor = "transparent";
+    textStyle(NORMAL);
+    textSize(14);
+    noStroke();
+
+
     switch (gameState) {
         case "start":
             startScreen.draw();
