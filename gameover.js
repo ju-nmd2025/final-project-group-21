@@ -14,15 +14,17 @@ export const endScreen = {
         quitText();
     },
 
-    click(mX, mY){
-      if(mX > 5 && mX < 240 && mY > 275 && mY < 350){
-        return "replay";
-      }
-      if(mX > 260 && mX < 425 && mY >275 && mY < 350){
-        return "quit"
-      }
-      return null;
-    }
+    click(mX, mY) {
+        if (mX > 75 && mX < 240 && mY > 270 && mY < 350) {
+            console.log("replay");
+            return "replay";
+        }
+        if (mX > 260 && mX < 425 && mY > 270 && mY < 350) {
+            console.log("quit");
+            return "quit";
+        }
+        return null;
+    },
 };
 
 //floor detail @ bottom

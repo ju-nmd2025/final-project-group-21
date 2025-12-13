@@ -14,7 +14,6 @@ export const startScreen = {
         text("GEOMETRY\nJump", width / 2, 120);
         pop();
 
-
         //floor
         push();
         noStroke();
@@ -78,20 +77,36 @@ export const startScreen = {
         startScreenPattern(280, 600, 200, 530, 120, 600);
         startScreenPattern(100, 600, 20, 530, -60, 600);
 
-        //draw
-        character.x = 225;
-        character.y = 400;
-        platforms[0].x = 209;
-        character.draw();
-        platforms[0].draw();
+        //draw demo
+
+        const demoChar = { x: 225, y: 400, w: 50, h: 50 };
+        const demoPlatform = { x: 209, y: 450, w: 80, h: 12 };
+
+        push();
+        drawingContext.shadowBlur = 12;
+        drawingContext.shadowOffsetX = 0;
+        drawingContext.shadowOffsetY = 0;
+        drawingContext.shadowColor = "#65DD00";
+        fill("#F7F704");
+        rect(demoChar.x, demoChar.y, demoChar.w, demoChar.h);
+        pop();
+
+        push();
+        drawingContext.shadowBlur = 12;
+        drawingContext.shadowOffsetX = 0;
+        drawingContext.shadowOffsetY = 0;
+        drawingContext.shadowColor = "#FFFFFF";
+        fill("#0B0623");
+        rect(demoPlatform.x, demoPlatform.y, demoPlatform.w, demoPlatform.h);
+        pop();
     },
 
-    click(mX, mY){
-        if(mX > 200 && mX<300 && mY > 250 && mY <350){
+    click(mX, mY) {
+        if (mX > 200 && mX < 300 && mY > 250 && mY < 350) {
             return "play";
         }
         return null;
-    }
+    },
 };
 
 function startScreenPattern(x1, y1, x2, y2, x3, y3) {

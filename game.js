@@ -296,6 +296,21 @@ function runGameBackground() {
     pop();
 }
 
+function resetGame() {
+    character.x = 225;
+    character.y = 400;
+
+    for (let platform of platforms) {
+        platform.broken = false;
+        platform.y = random(100, 500);
+    }
+
+    score = 0;
+    lastPlatform = null;
+
+    gameState = "play";
+}
+
 function mouseClicked() {
     if (gameState === "start") {
         let process = startScreen.click(mouseX, mouseY);
@@ -306,6 +321,9 @@ function mouseClicked() {
 
     if (gameState === "end") {
         let process = endScreen.click(mouseX, mouseY);
+        if (process === "replay") {
+            resetGame();
+        }
         if (process === "quit") {
             gameState = "start";
         }
