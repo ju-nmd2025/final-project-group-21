@@ -15,9 +15,9 @@ let platforms = [
     new Platform(120, 120, plaformWidth, plaformHeight),
     new Platform(300, 140, plaformWidth, plaformHeight),
     //prepared platforms
-    new Platform(100, 550, plaformWidth, plaformHeight, true),
-    new Platform(100, 550, plaformWidth, plaformHeight),
-    new Platform(140, 550, plaformWidth, plaformHeight, false, true),
+    new Platform(100, 650, plaformWidth, plaformHeight, true),
+    new Platform(100, 650, plaformWidth, plaformHeight),
+    new Platform(140, 650, plaformWidth, plaformHeight, false, true),
 ];
 
 //save start platform position
@@ -324,7 +324,8 @@ function resetGame() {
 
     score = 0;
     lastPlatform = null;
-
+    floor.x = floor.startX;
+    floor.y = floor.startY;
     gameState = "play";
 }
 

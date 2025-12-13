@@ -3,6 +3,10 @@ export let floor = {
     y: 520,
     w: 500,
     h: 80,
+
+    //save start position:
+    startX:0,
+    startY:520,
     draw() {
         //decorations
 
