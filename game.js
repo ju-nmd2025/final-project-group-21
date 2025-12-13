@@ -3,6 +3,7 @@ import { floor } from "./floor";
 import Platform from "platform";
 import Spike from "./spike";
 import { startScreen } from "./startScreen";
+import { endScreen } from "./gameover";
 
 let gameState = "start";
 let plaformWidth = 80;
@@ -50,6 +51,8 @@ function draw() {
         case "play":
             runGame();
             break;
+        case "end":
+            endScreen.draw();
     }
 }
 
@@ -95,6 +98,12 @@ function runGame() {
         character.y -= jumpHeight;
     } else {
         character.y += fallSpeed;
+    }
+
+    // dead char
+    if(character.y > height){
+        gameState = "end";
+        return; //stop lg
     }
 
     // scroll on jumping

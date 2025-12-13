@@ -1,4 +1,4 @@
-let startScreen = {
+export const startScreen = {
     draw() {
         background("#10164E");
 
