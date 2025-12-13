@@ -53,10 +53,10 @@ function draw() {
     //reset style
     drawingContext.shadowBlur = 0;
     drawingContext.shadowColor = "transparent";
+    textAlign(LEFT, TOP);
     textStyle(NORMAL);
     textSize(14);
     noStroke();
-
 
     switch (gameState) {
         case "start":
