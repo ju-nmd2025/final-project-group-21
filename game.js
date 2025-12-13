@@ -20,6 +20,12 @@ let platforms = [
     new Platform(140, 550, plaformWidth, plaformHeight, false, true),
 ];
 
+//save start platform position
+for(let platform of platforms){
+    platform.startX = platform.x;
+    platform.startY = platform.y;
+}
+
 let spikes = [
     new Spike(20, 320, 40, 280, 60, 320),
     new Spike(60, 320, 80, 280, 100, 320),
@@ -299,10 +305,13 @@ function runGameBackground() {
 function resetGame() {
     character.x = 225;
     character.y = 400;
+    platforms[0].x = 209;
+    platforms[0].y = 450;
 
     for (let platform of platforms) {
+        platform.x = platform.startX;
+        platform.y = platform.startY;
         platform.broken = false;
-        platform.y = random(100, 500);
     }
 
     score = 0;
