@@ -198,7 +198,7 @@ function isOnPlatform(character, platform) {
     if (
         colliding &&
         charBottom >= platformTop &&
-        charBottom <= platformTop + 25
+        charBottom <= platformTop + 12
     ) {
         return true;
     }

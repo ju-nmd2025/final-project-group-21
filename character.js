@@ -4,8 +4,8 @@ export let character = {
     w: 50,
     h: 50,
     vy: 0, //velocity
-    gravity: 0.7,
-    jumpPower: -18,
+    gravity: 0.1,
+    jumpPower: -6.5,
 
     draw() {
         push();
