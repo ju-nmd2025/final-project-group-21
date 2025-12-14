@@ -255,14 +255,14 @@ function checkSpikeCollision(character, spike) {
 function resetSpike(spike) {
     let newX = random(40, width - 40);
 
-    let highestY = spikes[0].y1;
+    let highestY = 10;
     for (let spike of spikes) {
         if (spike !== spike && spike.y1 < highestY) {
             highestY = spike.y1;
         }
     }
 
-    let newY = highestY - random(80, 120);
+    let newY = highestY - random(150, 250);
 
     spike.x1 = newX - 20;
     spike.y1 = newY;
