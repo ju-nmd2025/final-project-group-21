@@ -27,7 +27,6 @@ for (let platform of platforms) {
 }
 
 let spikes = [
-    new Spike(20, 320, 40, 280, 60, 320),
     new Spike(400, 60, 420, 20, 440, 60),
     //prepared spikes
     new Spike(20, 600, 40, 560, 60, 600),
