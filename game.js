@@ -229,7 +229,7 @@ function resetPlatform(platform) {
             highestPY = p.y;
         }
     }
-    platform.y = highestPY - random(80, 120);
+    platform.y = highestPY - random(80, 100);
 
     //reset broken platform state
     platform.broken = false;
