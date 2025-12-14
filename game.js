@@ -326,6 +326,8 @@ function resetGame() {
     lastPlatform = null;
     floor.x = floor.startX;
     floor.y = floor.startY;
+    insTextY = 488;
+
     gameState = "play";
 }
 
@@ -343,6 +345,7 @@ function mouseClicked() {
             resetGame();
         }
         if (process === "quit") {
+            resetGame();
             gameState = "start";
         }
     }
