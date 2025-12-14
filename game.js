@@ -30,6 +30,12 @@ let spikes = [
     new Spike(20, 320, 40, 280, 60, 320),
     new Spike(60, 320, 80, 280, 100, 320),
 ];
+//save start spike position
+for (let spike of spikes){
+    spike.startY1 = spike.y1;
+    spike.startY2 = spike.y2;
+    spike.startY3 = spike.y3;
+}
 
 let insTextY = 488;
 let fallSpeed = 5;
@@ -320,6 +326,12 @@ function resetGame() {
         platform.x = platform.startX;
         platform.y = platform.startY;
         platform.broken = false;
+    }
+
+    for(let spike of spikes){
+        spike.y1 = spike.startY1;
+        spike.y2 = spike.startY2;
+        spike.y3 = spike.startY3;
     }
 
     score = 0;
