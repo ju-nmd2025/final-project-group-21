@@ -7,8 +7,8 @@ export default class Platform {
 
         //movement
         this.move = move;
-        this.speed = random(1, 3);
-        this.direction = random([-1, 1]);
+        this.speed = randomRange(1, 3);
+        this.direction = randomPick([-1, 1]);
 
         //break
         this.canBreak = canBreak;
@@ -54,9 +54,11 @@ export default class Platform {
     }
 }
 
-function random(min, max) {
-    return Math.random() * (max - min) + min;
+function randomRange(min, max) {
+    return Math.random() * (max - min) + min; 
+    
 }
 
-
-export { Platform };
+function randomPick(array){ 
+    return array[Math.floor(Math.random()* array.length)]; //return index while round down the result
+}

@@ -198,7 +198,7 @@ function isOnPlatform(character, platform) {
     if (
         colliding &&
         charBottom >= platformTop &&
-        charBottom <= platformTop + 20
+        charBottom <= platformTop + 25
     ) {
         return true;
     }
@@ -229,7 +229,7 @@ function resetPlatform(platform) {
             highestPY = p.y;
         }
     }
-    platform.y = highestPY - random(80, 100);
+    platform.y = highestPY - random(80, 120);
 
     //reset broken platform state
     platform.broken = false;
