@@ -3,6 +3,10 @@ export let character = {
     y: 400,
     w: 50,
     h: 50,
+    vy: 0, //velocity
+    gravity: 0.8,
+    jumpPower: -18,
+
     draw() {
         push();
         //shadow
@@ -17,7 +21,7 @@ export let character = {
         rect(this.x, this.y, this.w, this.h);
         pop();
 
-
+        
         //mouth
         push();
         fill("#35de7bff");

@@ -40,8 +40,6 @@ for (let spike of spikes) {
 }
 
 let insTextY = 488;
-let fallSpeed = 5;
-let jumpHeight = 200;
 let moveSpeed = 8;
 const limitLine = 200; //max line character
 
@@ -98,6 +96,10 @@ function runGame() {
         character.x = width - character.w;
     }
 
+    //apply gravity
+    character.vy += character.gravity;
+    character.y += character.vy;
+
     //set current platform
     const currentPlatform = standingPlatform(character, platforms);
 
@@ -116,11 +118,8 @@ function runGame() {
         // set character standing on platform
         character.y = currentPlatform.y - character.h;
         // jump
-
-        character.y -= jumpHeight;
-    } else {
-        character.y += fallSpeed;
-    }
+        character.vy = character.jumpPower;
+    } 
 
     // dead char
     if (character.y > height) {
@@ -197,7 +196,7 @@ function isOnPlatform(character, platform) {
     if (
         colliding &&
         charBottom >= platformTop &&
-        charBottom <= platformTop + fallSpeed //not fall too deep 1 fall
+        charBottom <= platformTop + 15
     ) {
         return true;
     }
@@ -370,7 +369,7 @@ function runGameBackground() {
 
 function resetGame() {
     character.x = 225;
-    character.y = 400;
+    character.y = 320;
     platforms[0].x = 209;
     platforms[0].y = 450;
 

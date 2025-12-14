@@ -12,6 +12,7 @@ export const endScreen = {
         replayRectRight();
         replayText();
         quitText();
+        finalScore();
     },
 
     click(mX, mY) {
@@ -162,6 +163,15 @@ function quitText() {
     text("QUIT", 341, 315);
 }
 
+function finalScore() {
+    push();
+    fill("white");
+    textAlign(CENTER, CENTER);
+    textStyle(BOLD);
+    textSize(22);
+    text("Your score " + score, 250, 245);
+    pop();
+}
 // function mousePressed() {
 //     if (mouseX > 75 && mouseX < 240 && mouseY > 270 && mouseY < 350) {
 //         console.log("left");
