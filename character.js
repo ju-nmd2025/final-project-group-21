@@ -4,7 +4,7 @@ export let character = {
     w: 50,
     h: 50,
     vy: 0, //velocity
-    gravity: 0.8,
+    gravity: 0.7,
     jumpPower: -18,
 
     draw() {
@@ -32,4 +32,3 @@ export let character = {
         pop();
     },
 };
-
