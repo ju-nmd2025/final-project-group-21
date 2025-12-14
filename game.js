@@ -28,10 +28,13 @@ for (let platform of platforms) {
 
 let spikes = [
     new Spike(20, 320, 40, 280, 60, 320),
-    new Spike(60, 320, 80, 280, 100, 320),
+    new Spike(400, 60, 420, 20, 440, 60),
+    //prepared spikes
+    new Spike(20, 600, 40, 560, 60, 600),
+
 ];
 //save start spike position
-for (let spike of spikes){
+for (let spike of spikes) {
     spike.startY1 = spike.y1;
     spike.startY2 = spike.y2;
     spike.startY3 = spike.y3;
@@ -121,19 +124,17 @@ function runGame() {
     }
 
     // dead char
-    if (character.y > height ) {
+    if (character.y > height) {
         gameState = "end";
         return; //stop lg
     }
 
-    for(let spike of spikes){
-        if(checkSpikeCollision(character,spike)){
+    for (let spike of spikes) {
+        if (checkSpikeCollision(character, spike)) {
             gameState = "end";
             return;
         }
     }
-    
-
 
     // scroll on jumping
     if (character.y < limitLine) {
@@ -157,10 +158,16 @@ function runGame() {
         floor.y += balanceRange;
     }
 
-    //reset platform func
+    //reset platform && spike func
     for (const plaform of platforms) {
         if (plaform.y > height) {
             resetPlatform(plaform);
+        }
+    }
+
+    for (const spike of spikes) {
+        if (spike.y1 > height) {
+            resetSpike(spike);
         }
     }
 
@@ -229,17 +236,40 @@ function resetPlatform(platform) {
 }
 
 //check collision spikes
-function checkSpikeCollision(character, spike){
-
+function checkSpikeCollision(character, spike) {
     //counting bounding box surround spike
-    let leftRect = Math.min(spike.x1,spike.x2,spike.x3);
-    let rightRect = Math.max(spike.x1,spike.x2,spike.x3);
-    let topRect = Math.min(spike.y1,spike.y2,spike.y3);
-    let bottomRect = Math.max(spike.y1,spike.y2,spike.y3);
+    let leftRect = Math.min(spike.x1, spike.x2, spike.x3);
+    let rightRect = Math.max(spike.x1, spike.x2, spike.x3);
+    let topRect = Math.min(spike.y1, spike.y2, spike.y3);
+    let bottomRect = Math.max(spike.y1, spike.y2, spike.y3);
 
-    let hit = character.x + character.w > leftRect && character.x < rightRect && character.y + character.h > topRect && character.y < bottomRect;
+    let hit =
+        character.x + character.w > leftRect &&
+        character.x < rightRect &&
+        character.y + character.h > topRect &&
+        character.y < bottomRect;
 
     return hit;
+}
+
+function resetSpike(spike) {
+    let newX = random(40, width - 40);
+
+    let highestY = spikes[0].y1;
+    for (let spike of spikes) {
+        if (spike !== spike && spike.y1 < highestY) {
+            highestY = spike.y1;
+        }
+    }
+
+    let newY = highestY - random(80, 120);
+
+    spike.x1 = newX - 20;
+    spike.y1 = newY;
+    spike.x2 = newX;
+    spike.y2 = newY - 40;
+    spike.x3 = newX + 20;
+    spike.y3 = newY;
 }
 
 function runGameBackground() {
@@ -351,7 +381,7 @@ function resetGame() {
         platform.broken = false;
     }
 
-    for(let spike of spikes){
+    for (let spike of spikes) {
         spike.y1 = spike.startY1;
         spike.y2 = spike.startY2;
         spike.y3 = spike.startY3;
@@ -385,4 +415,3 @@ function mouseClicked() {
         }
     }
 }
-
