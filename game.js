@@ -98,6 +98,7 @@ function runGame() {
 
     //apply gravity
     character.vy += character.gravity;
+    //vy change -> create movement for char
     character.y += character.vy;
 
     //set current platform
