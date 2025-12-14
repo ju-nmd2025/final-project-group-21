@@ -121,10 +121,19 @@ function runGame() {
     }
 
     // dead char
-    if (character.y > height) {
+    if (character.y > height ) {
         gameState = "end";
         return; //stop lg
     }
+
+    for(let spike of spikes){
+        if(checkSpikeCollision(character,spike)){
+            gameState = "end";
+            return;
+        }
+    }
+    
+
 
     // scroll on jumping
     if (character.y < limitLine) {
@@ -217,6 +226,20 @@ function resetPlatform(platform) {
 
     //reset broken platform state
     platform.broken = false;
+}
+
+//check collision spikes
+function checkSpikeCollision(character, spike){
+
+    //counting bounding box surround spike
+    let leftRect = Math.min(spike.x1,spike.x2,spike.x3);
+    let rightRect = Math.max(spike.x1,spike.x2,spike.x3);
+    let topRect = Math.min(spike.y1,spike.y2,spike.y3);
+    let bottomRect = Math.max(spike.y1,spike.y2,spike.y3);
+
+    let hit = character.x + character.w > leftRect && character.x < rightRect && character.y + character.h > topRect && character.y < bottomRect;
+
+    return hit;
 }
 
 function runGameBackground() {
@@ -362,3 +385,4 @@ function mouseClicked() {
         }
     }
 }
+
