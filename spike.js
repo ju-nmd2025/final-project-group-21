@@ -31,3 +31,5 @@ export default class Spike {
         pop();
     }
 }
+
+export { Spike };

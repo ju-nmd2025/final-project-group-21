@@ -1,3 +1,4 @@
+import { score } from "./game.js";
 export const endScreen = {
     draw() {
         background("#10164E");

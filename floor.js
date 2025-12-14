@@ -5,8 +5,8 @@ export let floor = {
     h: 80,
 
     //save start position:
-    startX:0,
-    startY:520,
+    startX: 0,
+    startY: 520,
     draw() {
         //decorations
 
@@ -149,3 +149,4 @@ function backgroundPatternWhite(x1, y1, x2, y2, x3, y3) {
     triangle(x1, y1, x2, y2, x3, y3);
     pop();
 }
+

@@ -1,9 +1,9 @@
-import { character } from "./character";
-import { floor } from "./floor";
-import Platform from "platform";
-import Spike from "./spike";
-import { startScreen } from "./startScreen";
-import { endScreen } from "./gameover";
+import { character } from "./character.js";
+import { floor } from "./floor.js";
+import Platform from "./platform.js";
+import Spike from "./spike.js";
+import { startScreen } from "./startScreen.js";
+import { endScreen } from "./gameover.js";
 
 let gameState = "start";
 let plaformWidth = 80;
@@ -30,7 +30,6 @@ let spikes = [
     new Spike(400, 60, 420, 20, 440, 60),
     //prepared spikes
     new Spike(20, 600, 40, 560, 60, 600),
-
 ];
 //save start spike position
 for (let spike of spikes) {
@@ -44,7 +43,7 @@ let moveSpeed = 8;
 const limitLine = 200; //max line character
 
 //score
-let score = 0;
+export let score = 0;
 let lastPlatform = null;
 
 function setup() {
@@ -54,6 +53,8 @@ function setup() {
     character.x = startPlatform.x + startPlatform.w / 2 - character.w / 2;
     character.y = startPlatform.y - character.h;
 }
+
+window.setup = setup;
 
 function draw() {
     //reset style
@@ -120,7 +121,7 @@ function runGame() {
         character.y = currentPlatform.y - character.h;
         // jump
         character.vy = character.jumpPower;
-    } 
+    }
 
     // dead char
     if (character.y > height) {
@@ -197,7 +198,7 @@ function isOnPlatform(character, platform) {
     if (
         colliding &&
         charBottom >= platformTop &&
-        charBottom <= platformTop + 15
+        charBottom <= platformTop + 20
     ) {
         return true;
     }
@@ -414,3 +415,9 @@ function mouseClicked() {
         }
     }
 }
+
+window.draw = draw;
+
+window.addEventListener("click", function (event) {
+    mouseClicked();
+});

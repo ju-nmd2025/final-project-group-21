@@ -53,3 +53,10 @@ export default class Platform {
         pop();
     }
 }
+
+function random(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+
+export { Platform };

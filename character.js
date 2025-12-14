@@ -21,7 +21,6 @@ export let character = {
         rect(this.x, this.y, this.w, this.h);
         pop();
 
-        
         //mouth
         push();
         fill("#35de7bff");
@@ -33,3 +32,4 @@ export let character = {
         pop();
     },
 };
+
